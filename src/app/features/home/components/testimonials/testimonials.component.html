@@ -1,0 +1,61 @@
+<section class="testimonials section" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Customer Reviews</span>
+      <h2>What Our Customers Say</h2>
+      <p>Thousands of satisfied customers trust SOM Herbal for their health and wellness needs.</p>
+    </div>
+
+    <div class="testimonials__wrapper">
+      <button class="testimonials__arrow testimonials__arrow--prev"
+              (click)="prevTestimonial()"
+              id="testimonial-prev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <div class="testimonials__track">
+        @for (t of testimonials; track t.id; let i = $index) {
+          <div class="testimonial-card"
+               [class.testimonial-card--active]="currentIndex() === i"
+               [id]="'testimonial-' + t.id">
+            <div class="testimonial-card__quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="testimonial-card__text">{{ t.quote }}</p>
+            <div class="testimonial-card__rating">
+              @for (s of getRange(t.rating); track s) {
+                <i class="fas fa-star"></i>
+              }
+            </div>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar"
+                   [style.background]="t.color">
+                {{ t.initials }}
+              </div>
+              <div class="testimonial-card__author-info">
+                <strong>{{ t.name }}</strong>
+                <span>{{ t.role }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <button class="testimonials__arrow testimonials__arrow--next"
+              (click)="nextTestimonial()"
+              id="testimonial-next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Dots -->
+    <div class="testimonials__dots">
+      @for (t of testimonials; track t.id; let i = $index) {
+        <button class="testimonials__dot"
+                [class.testimonials__dot--active]="currentIndex() === i"
+                (click)="currentIndex.set(i)"
+                [id]="'testimonial-dot-' + i"></button>
+      }
+    </div>
+  </div>
+</section>

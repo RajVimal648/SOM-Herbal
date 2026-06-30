@@ -1,0 +1,100 @@
+.products-page {
+  background: var(--color-bg-white);
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  &__count {
+    font-size: 14px;
+    color: var(--color-text-medium);
+    margin-bottom: 28px;
+
+    strong { color: var(--color-primary); }
+    em { color: var(--color-text-dark); font-style: normal; font-weight: 600; }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+
+    @media (max-width: 992px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 576px) { grid-template-columns: 1fr; }
+  }
+}
+
+/* Category Filter Buttons */
+.category-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  padding: 8px 18px;
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-medium);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-body);
+
+  &:hover, &--active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+}
+
+/* Sort Control */
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  label {
+    font-size: 13px;
+    color: var(--color-text-medium);
+    white-space: nowrap;
+  }
+
+  select {
+    padding: 8px 14px;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-text-dark);
+    background: #fff;
+    outline: none;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+
+    &:focus { border-color: var(--color-primary); }
+  }
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--color-text-light);
+
+  i {
+    font-size: 48px;
+    margin-bottom: 16px;
+    display: block;
+    color: var(--color-border);
+  }
+
+  p { font-size: 16px; }
+}

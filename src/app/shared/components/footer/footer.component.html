@@ -1,0 +1,131 @@
+<footer class="footer">
+  <div class="footer__main">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Contact Info -->
+        <div class="footer__col footer__col--contact">
+          <h3 class="footer__heading">Contact Us</h3>
+          <div class="footer__logo">
+            <i class="fas fa-leaf"></i>
+            <span>SOM Herbal Specialities</span>
+          </div>
+          <address class="footer__address">
+            <p>Lucknow, Uttar Pradesh</p>
+          </address>
+          <div class="footer__contact-info">
+            <a href="tel:+919519989311" id="footer-phone">
+              <i class="fas fa-phone-alt"></i>
+              Phone: 9519989311
+            </a>
+            <a href="mailto:raj@atheriq.in" id="footer-email">
+              <i class="fas fa-envelope"></i>
+              raj&#64;atheriq.in
+            </a>
+          </div>
+        </div>
+
+        <!-- My Account Links -->
+        <div class="footer__col">
+          <h3 class="footer__heading">My Account</h3>
+          <ul class="footer__links">
+            <li><a href="#" id="footer-account">My Account</a></li>
+            <li><a routerLink="/login" id="footer-login">Login</a></li>
+            <li><a href="#" id="footer-cart">My Cart</a></li>
+            <li><a href="#" id="footer-wishlist">Wishlist</a></li>
+            <li><a href="#" id="footer-checkout">Checkout</a></li>
+            <li><a href="#" id="footer-track">Track Order</a></li>
+            <li><a href="#" id="footer-user-info">User Info</a></li>
+          </ul>
+        </div>
+
+        <!-- Information Links -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Information</h3>
+          <ul class="footer__links">
+            <li><a routerLink="/about" id="footer-about">About Us</a></li>
+            <li><a href="#" id="footer-privacy">Privacy Policy</a></li>
+            <li><a href="#" id="footer-terms">Term & Condition</a></li>
+            <li><a routerLink="/products" id="footer-new-product">New Product</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Links -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Support</h3>
+          <ul class="footer__links">
+            <li><a routerLink="/contact" id="footer-contact">Contact Us</a></li>
+            <li><a routerLink="/products" id="footer-category">Category</a></li>
+            <li><a href="#" id="footer-testimonial">Testimonial</a></li>
+            <li><a href="#" id="footer-faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer__col footer__col--newsletter">
+          <h3 class="footer__heading">Newsletter</h3>
+          <p class="footer__newsletter-text">
+            Sign up to receive news about new services, promotions, products and more.
+          </p>
+          @if (!isSubscribed) {
+            <form class="footer__newsletter-form" (ngSubmit)="subscribeNewsletter()" id="footer-newsletter-form">
+              <input
+                type="email"
+                [(ngModel)]="newsletterEmail"
+                name="email"
+                placeholder="Your email address"
+                required
+                id="footer-newsletter-input">
+              <button type="submit" id="footer-newsletter-submit">
+                Sign Up
+              </button>
+            </form>
+          } @else {
+            <div class="footer__subscribed">
+              <i class="fas fa-check-circle"></i>
+              Thank you for subscribing!
+            </div>
+          }
+
+          <!-- Social Links -->
+          <div class="footer__social">
+            <a href="#" class="social-link social-link--fb" aria-label="Facebook" id="footer-social-fb">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link social-link--ig" aria-label="Instagram" id="footer-social-ig">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link social-link--yt" aria-label="YouTube" id="footer-social-yt">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-link social-link--tw" aria-label="Twitter" id="footer-social-tw">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer__bottom">
+    <div class="container">
+      <div class="footer__bottom-inner">
+        <p>
+          Copyright &copy; {{ currentYear }}
+          <a href="https://www.atheriq.in" target="_blank" rel="noopener noreferrer">
+            www.atheriq.in
+          </a>
+          All Rights Reserved.
+        </p>
+        <div class="footer__payments">
+          <span class="payment-badge visa">VISA</span>
+          <span class="payment-badge master">MC</span>
+          <span class="payment-badge paypal">PayPal</span>
+          <span class="payment-badge amex">AMEX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

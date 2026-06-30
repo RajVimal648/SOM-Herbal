@@ -1,0 +1,106 @@
+
+
+@if (product(); as p) {
+  <section class="product-detail section">
+    <div class="container">
+      <div class="product-detail__grid">
+
+        <!-- Product Image -->
+        <div class="product-detail__image-col">
+          <div class="product-detail__image-wrap">
+            <img [src]="p.image" [alt]="p.name" id="product-detail-image">
+            @if (p.discount) {
+              <div class="product-detail__discount-badge">-{{ p.discount }}% OFF</div>
+            }
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-detail__info-col">
+          <span class="product-detail__category">{{ p.category }}</span>
+          <h1 class="product-detail__name">{{ p.name }}</h1>
+
+          <div class="product-detail__rating">
+            @for (star of getStars(p.rating); track $index) {
+              <i class="fas fa-star" [class.empty]="star === 'empty'"></i>
+            }
+            <span class="product-detail__review-count">{{ p.rating }} ({{ p.reviewCount }} reviews)</span>
+          </div>
+
+          <div class="product-detail__price">
+            <span class="price-current">₹{{ p.price }}</span>
+            @if (p.originalPrice) {
+              <span class="price-original">₹{{ p.originalPrice }}</span>
+              <span class="price-saving">You save ₹{{ (p.originalPrice - p.price) }}</span>
+            }
+          </div>
+
+          <p class="product-detail__short-desc">{{ p.shortDescription }}</p>
+
+          <!-- Quantity & Add to Cart -->
+          <div class="product-detail__purchase">
+            <div class="quantity-control">
+              <button (click)="decrement()" id="qty-decrement" aria-label="Decrease">−</button>
+              <span id="qty-value">{{ quantity() }}</span>
+              <button (click)="increment()" id="qty-increment" aria-label="Increase">+</button>
+            </div>
+            <button class="btn btn-primary add-to-cart"
+                    [class.added]="addedToCart()"
+                    (click)="addToCart()"
+                    id="product-add-to-cart">
+              @if (addedToCart()) {
+                <i class="fas fa-check"></i> Added to Cart!
+              } @else {
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              }
+            </button>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="product-detail__trust-badges">
+            <span><i class="fas fa-truck"></i> Free Shipping</span>
+            <span><i class="fas fa-shield-alt"></i> Quality Assured</span>
+            <span><i class="fas fa-undo-alt"></i> 7-Day Return</span>
+          </div>
+
+          <!-- Tabs -->
+          <div class="product-detail__tabs">
+            <div class="tabs-nav">
+              <button class="tab-btn" [class.tab-btn--active]="activeTab() === 'benefits'" (click)="activeTab.set('benefits')" id="tab-benefits">Benefits</button>
+              <button class="tab-btn" [class.tab-btn--active]="activeTab() === 'ingredients'" (click)="activeTab.set('ingredients')" id="tab-ingredients">Ingredients</button>
+              <button class="tab-btn" [class.tab-btn--active]="activeTab() === 'description'" (click)="activeTab.set('description')" id="tab-description">Description</button>
+            </div>
+            <div class="tab-content">
+              @if (activeTab() === 'benefits') {
+                <ul class="tab-list">
+                  @for (benefit of p.benefits; track benefit) {
+                    <li><i class="fas fa-check-circle"></i> {{ benefit }}</li>
+                  }
+                </ul>
+              }
+              @if (activeTab() === 'ingredients') {
+                <ul class="tab-list">
+                  @for (ingredient of p.ingredients; track ingredient) {
+                    <li><i class="fas fa-leaf"></i> {{ ingredient }}</li>
+                  }
+                </ul>
+              }
+              @if (activeTab() === 'description') {
+                <p class="tab-desc">{{ p.description }}</p>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+} @else {
+  <div class="not-found section">
+    <div class="container" style="text-align: center; padding: 80px 0;">
+      <i class="fas fa-exclamation-triangle" style="font-size:48px; color: var(--color-accent); margin-bottom: 20px; display:block;"></i>
+      <h2>Product Not Found</h2>
+      <p style="margin: 16px 0 32px; color: var(--color-text-medium);">The product you are looking for does not exist.</p>
+      <a routerLink="/products" class="btn btn-primary">Browse All Products</a>
+    </div>
+  </div>
+}

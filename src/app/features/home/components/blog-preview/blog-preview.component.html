@@ -1,0 +1,44 @@
+<section class="blog-preview section" id="blog-preview">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Latest News</span>
+      <h2>From the Blog</h2>
+      <p>Stay updated with the latest health tips, Ayurvedic insights, and herbal knowledge.</p>
+    </div>
+
+    <div class="blog-preview__grid">
+      @for (post of posts; track post.id) {
+        <article class="blog-card" [id]="'blog-card-' + post.id">
+          <a [routerLink]="['/blog', post.slug]" class="blog-card__image-link">
+            <div class="blog-card__image-wrap">
+              <img [src]="post.image" [alt]="post.title" loading="lazy">
+              <span class="blog-card__category">{{ post.category }}</span>
+            </div>
+          </a>
+          <div class="blog-card__body">
+            <div class="blog-card__meta">
+              <span><i class="fas fa-calendar-alt"></i> {{ post.date | date: 'MMMM d, yyyy' }}</span>
+              <span><i class="fas fa-comment"></i> {{ post.commentCount }} Comments</span>
+            </div>
+            <h3 class="blog-card__title">
+              <a [routerLink]="['/blog', post.slug]">{{ post.title }}</a>
+            </h3>
+            <p class="blog-card__excerpt">{{ post.excerpt }}</p>
+            <a [routerLink]="['/blog', post.slug]"
+               class="blog-card__read-more"
+               [id]="'blog-read-more-' + post.id">
+              Continue Reading <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="blog-preview__cta">
+      <a routerLink="/blog" class="btn btn-outline" id="blog-view-all">
+        <i class="fas fa-newspaper"></i>
+        View All Articles
+      </a>
+    </div>
+  </div>
+</section>

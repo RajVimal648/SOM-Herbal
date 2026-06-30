@@ -1,0 +1,69 @@
+@if (post(); as p) {
+
+  <section class="blog-detail section">
+    <div class="container">
+      <div class="blog-detail__layout">
+        <!-- Main Content -->
+        <article class="blog-detail__article">
+          <img [src]="p.image" [alt]="p.title" class="blog-detail__hero-image">
+          <div class="blog-detail__meta">
+            <span><i class="fas fa-calendar-alt"></i> {{ p.date | date: 'MMMM d, yyyy' }}</span>
+            <span><i class="fas fa-user"></i> {{ p.author }}</span>
+            <span><i class="fas fa-clock"></i> {{ p.readTime }} min read</span>
+            <span><i class="fas fa-tag"></i> {{ p.category }}</span>
+          </div>
+          <div class="blog-detail__content">
+            <p>{{ p.content }}</p>
+          </div>
+          <div class="blog-detail__tags">
+            @for (tag of p.tags; track tag) {
+              <span class="tag"># {{ tag }}</span>
+            }
+          </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="blog-detail__sidebar">
+          <div class="sidebar-widget">
+            <h3 class="sidebar-widget__title">Recent Posts</h3>
+            <div class="sidebar-posts">
+              @for (recent of recentPosts; track recent.id) {
+                <a [routerLink]="['/blog', recent.slug]" class="sidebar-post">
+                  <img [src]="recent.image" [alt]="recent.title">
+                  <div>
+                    <span>{{ recent.date | date: 'MMM d, yyyy' }}</span>
+                    <p>{{ recent.title }}</p>
+                  </div>
+                </a>
+              }
+            </div>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3 class="sidebar-widget__title">Categories</h3>
+            <ul class="sidebar-categories">
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Health Tips</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Ayurveda</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Research</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Nutrition</a></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-widget sidebar-cta">
+            <i class="fas fa-leaf"></i>
+            <h4>Need Health Advice?</h4>
+            <p>Consult our Ayurvedic experts for personalized guidance.</p>
+            <a routerLink="/contact" class="btn btn-primary" id="blog-sidebar-cta">Contact Us</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+} @else {
+  <div class="section">
+    <div class="container" style="text-align: center; padding: 80px 0;">
+      <h2>Post Not Found</h2>
+      <a routerLink="/blog" class="btn btn-primary" style="margin-top: 20px;">Back to Blog</a>
+    </div>
+  </div>
+}

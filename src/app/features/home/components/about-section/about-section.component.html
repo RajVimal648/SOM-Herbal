@@ -1,0 +1,58 @@
+<section class="about-section section" id="about-section">
+  <div class="container">
+    <div class="about-section__grid">
+      <!-- Image Side -->
+      <div class="about-section__image-side">
+        <div class="about-section__image-wrap">
+          <img src="assets/images/about-us.png"
+               alt="Som Herbal - About Us - Natural Herbal Ingredients"
+               loading="lazy">
+          <div class="about-section__experience-badge">
+            <span class="years">15+</span>
+            <span class="label">Years of<br>Excellence</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Side -->
+      <div class="about-section__content">
+        <div class="section-header" style="text-align: left; margin-bottom: 28px;">
+          <span class="section-label">Who We Are</span>
+          <h2>SOM Herbal Specialities</h2>
+          <div class="about-section__divider"></div>
+        </div>
+
+        <p class="about-section__lead">
+          We are a leading manufacturer and supplier of premium quality herbal and Ayurvedic products.
+          Based in Lucknow, U.P., we combine the ancient wisdom of Ayurveda with modern scientific research.
+        </p>
+        <p class="about-section__text">
+          Our products are crafted using the finest natural ingredients, carefully sourced and tested for purity and potency. We believe in the power of nature to heal and nourish the human body without any harmful side effects.
+        </p>
+
+        <!-- Checklist -->
+        <ul class="about-section__checklist">
+          <li><i class="fas fa-check-circle"></i> 100% natural & chemical-free formulations</li>
+          <li><i class="fas fa-check-circle"></i> GMP certified manufacturing unit</li>
+          <li><i class="fas fa-check-circle"></i> AYUSH Ministry approved products</li>
+          <li><i class="fas fa-check-circle"></i> ISO 9001:2015 certified quality management</li>
+        </ul>
+
+        <!-- Stats -->
+        <div class="about-section__stats">
+          @for (stat of stats; track stat.label) {
+            <div class="stat-item">
+              <span class="stat-value">{{ stat.value }}</span>
+              <span class="stat-label">{{ stat.label }}</span>
+            </div>
+          }
+        </div>
+
+        <a routerLink="/about" class="btn btn-primary" id="about-section-cta">
+          <i class="fas fa-arrow-right"></i>
+          Learn More About Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

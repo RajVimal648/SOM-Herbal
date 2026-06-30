@@ -1,0 +1,38 @@
+<section class="blog-page section">
+  <div class="container">
+    <div class="blog-page__grid">
+      @for (post of posts; track post.id) {
+        <article class="blog-card-full" [id]="'blog-full-' + post.id">
+          <a [routerLink]="['/blog', post.slug]" class="blog-card-full__image-link">
+            <div class="blog-card-full__image">
+              <img [src]="post.image" [alt]="post.title" loading="lazy">
+              <span class="blog-card-full__category">{{ post.category }}</span>
+            </div>
+          </a>
+          <div class="blog-card-full__body">
+            <div class="blog-card-full__meta">
+              <span><i class="fas fa-calendar-alt"></i> {{ post.date | date: 'MMMM d, yyyy' }}</span>
+              <span><i class="fas fa-user"></i> {{ post.author }}</span>
+              <span><i class="fas fa-clock"></i> {{ post.readTime }} min read</span>
+            </div>
+            <h2 class="blog-card-full__title">
+              <a [routerLink]="['/blog', post.slug]">{{ post.title }}</a>
+            </h2>
+            <p class="blog-card-full__excerpt">{{ post.excerpt }}</p>
+            <div class="blog-card-full__tags">
+              @for (tag of post.tags.slice(0, 3); track tag) {
+                <span class="tag"># {{ tag }}</span>
+              }
+            </div>
+            <a [routerLink]="['/blog', post.slug]"
+               class="btn btn-outline"
+               style="align-self: flex-start;"
+               [id]="'blog-read-' + post.id">
+              Continue Reading <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

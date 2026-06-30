@@ -1,0 +1,97 @@
+<!-- Top Utility Bar -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar__left">
+      <a href="tel:+919519989311" id="topbar-phone">
+        <i class="fas fa-phone-alt"></i>
+        Call to Support: +91 9519989311
+      </a>
+    </div>
+    <div class="top-bar__right">
+      <a routerLink="/login" id="topbar-login"><i class="fas fa-user"></i> Login / Register</a>
+      <span class="divider">|</span>
+      <a href="#" id="topbar-wishlist"><i class="fas fa-heart"></i> Wishlist (0)</a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Header -->
+<header class="header" [class.header--scrolled]="isScrolled()">
+  <div class="container">
+    <div class="header__inner">
+
+      <!-- Logo -->
+      <a routerLink="/" class="header__logo" id="header-logo">
+        <div class="logo-icon">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="logo-text">
+          <span class="logo-som">SOM</span>
+          <span class="logo-tagline">Herbal Specialities</span>
+        </div>
+      </a>
+
+      <!-- Navigation -->
+      <nav class="header__nav" [class.header__nav--open]="isMobileMenuOpen()">
+        <div class="mobile-nav-header">
+          <span>Menu</span>
+          <button class="close-btn" (click)="closeMobileMenu()" id="mobile-menu-close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <ul class="nav-list">
+          @for (link of navLinks; track link.path) {
+            <li class="nav-item">
+              <a [routerLink]="link.path"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: link.path === '/'}"
+                 (click)="closeMobileMenu()"
+                 [id]="'nav-' + link.label.toLowerCase().replace(' ', '-')">
+                <i class="fas {{ link.icon }}"></i>
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header__actions">
+        <button class="action-btn" (click)="toggleSearch()" id="header-search-btn" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+        <a routerLink="/products" class="action-btn cart-btn" id="header-cart-btn" aria-label="Cart">
+          <i class="fas fa-shopping-cart"></i>
+          @if (cartService.cartCount() > 0) {
+            <span class="cart-badge">{{ cartService.cartCount() }}</span>
+          }
+        </a>
+        <button class="hamburger" (click)="toggleMobileMenu()" id="mobile-menu-toggle" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  @if (isSearchOpen()) {
+    <div class="search-bar">
+      <div class="container">
+        <div class="search-bar__inner">
+          <input type="text" placeholder="Search for herbal products..." id="header-search-input" autofocus>
+          <button id="header-search-submit"><i class="fas fa-search"></i> Search</button>
+          <button class="search-close" (click)="toggleSearch()" id="header-search-close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</header>
+
+<!-- Mobile Overlay -->
+@if (isMobileMenuOpen()) {
+  <div class="mobile-overlay" (click)="closeMobileMenu()" id="mobile-overlay"></div>
+}

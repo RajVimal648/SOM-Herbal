@@ -1,0 +1,91 @@
+<!-- About Intro -->
+<section class="about-intro section">
+  <div class="container">
+    <div class="about-intro__grid">
+      <div class="about-intro__image">
+        <img src="assets/images/about-us.png" alt="SOM Herbal Specialities" loading="lazy">
+      </div>
+      <div class="about-intro__content">
+        <div class="section-header" style="text-align:left; margin-bottom: 24px;">
+          <span class="section-label">Our Story</span>
+          <h2>From Nature, For People</h2>
+        </div>
+        <p>SOM Herbal Specialities was founded in 2008 with a single mission – to make authentic Ayurvedic and herbal remedies accessible to everyone. Based in the heart of Lucknow, Uttar Pradesh, we have grown from a small family enterprise to a trusted name in natural health products.</p>
+        <p style="margin-top: 16px;">Our products are formulated by experienced Ayurvedic doctors and tested in state-of-the-art laboratories to ensure they meet the highest standards of quality, safety, and efficacy.</p>
+        <div class="about-intro__certs">
+          <div class="cert-badge"><i class="fas fa-certificate"></i><span>AYUSH<br>Certified</span></div>
+          <div class="cert-badge"><i class="fas fa-award"></i><span>ISO<br>9001:2015</span></div>
+          <div class="cert-badge"><i class="fas fa-shield-alt"></i><span>GMP<br>Certified</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission / Vision -->
+<section class="mission-vision section" style="background: var(--color-bg-light);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">What Drives Us</span>
+      <h2>Our Mission & Vision</h2>
+    </div>
+    <div class="mission-vision__grid">
+      <div class="mv-card">
+        <div class="mv-card__icon"><i class="fas fa-bullseye"></i></div>
+        <h3>Our Mission</h3>
+        <p>To provide high-quality, authentic Ayurvedic and herbal products that promote holistic wellness, using only the finest natural ingredients sourced sustainably from nature.</p>
+      </div>
+      <div class="mv-card">
+        <div class="mv-card__icon"><i class="fas fa-eye"></i></div>
+        <h3>Our Vision</h3>
+        <p>To become India's most trusted herbal brand, bridging ancient Ayurvedic wisdom with modern science to create a healthier, more natural world for everyone.</p>
+      </div>
+      <div class="mv-card">
+        <div class="mv-card__icon"><i class="fas fa-heart"></i></div>
+        <h3>Our Values</h3>
+        <p>Quality, transparency, sustainability, and customer trust are the core values that guide every product we create and every relationship we build.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="team-section section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">The Experts</span>
+      <h2>Meet Our Team</h2>
+      <p>Our team of experienced Ayurvedic practitioners, scientists, and health experts are dedicated to your wellness.</p>
+    </div>
+    <div class="team-grid">
+      @for (member of team; track member.name) {
+        <div class="team-card">
+          <div class="team-card__avatar" [style.background]="member.color">{{ member.initials }}</div>
+          <h3>{{ member.name }}</h3>
+          <span>{{ member.role }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Milestones -->
+<section class="milestones section" style="background: var(--color-bg-light);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Our Journey</span>
+      <h2>Milestones & Achievements</h2>
+    </div>
+    <div class="timeline">
+      @for (m of milestones; track m.year; let odd = $odd) {
+        <div class="timeline-item" [class.timeline-item--right]="odd">
+          <div class="timeline-item__content">
+            <span class="timeline-item__year">{{ m.year }}</span>
+            <p>{{ m.event }}</p>
+          </div>
+          <div class="timeline-item__dot"></div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

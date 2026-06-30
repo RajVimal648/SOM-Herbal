@@ -1,0 +1,51 @@
+<article class="product-card" [id]="'product-card-' + product.id">
+  <a [routerLink]="['/products', product.slug]" class="product-card__image-link">
+    <div class="product-card__image-wrap">
+      <img [src]="product.image" [alt]="product.name" class="product-card__image" loading="lazy">
+      <div class="product-card__overlay">
+        <button
+          class="product-card__cart-btn"
+          [class.product-card__cart-btn--added]="addedToCart"
+          (click)="addToCart($event)"
+          [id]="'add-to-cart-' + product.id">
+          @if (addedToCart) {
+            <i class="fas fa-check"></i> Added!
+          } @else {
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+          }
+        </button>
+      </div>
+      <div class="product-card__badges">
+        @if (product.discount) {
+          <span class="badge badge-sale">-{{ product.discount }}%</span>
+        }
+        @if (product.isNew) {
+          <span class="badge badge-new">New</span>
+        }
+        @if (product.isBestSeller) {
+          <span class="badge badge-bestseller">Best Seller</span>
+        }
+      </div>
+    </div>
+  </a>
+  <div class="product-card__body">
+    <span class="product-card__category">{{ product.category }}</span>
+    <h3 class="product-card__name">
+      <a [routerLink]="['/products', product.slug]">{{ product.name }}</a>
+    </h3>
+    <div class="product-card__rating">
+      @for (star of getStars(product.rating); track $index) {
+        <i class="fas fa-star"
+           [class.empty]="star === 'empty'"
+           [class.half-star]="star === 'half'"></i>
+      }
+      <span class="product-card__review-count">({{ product.reviewCount }})</span>
+    </div>
+    <div class="product-card__price">
+      <span class="product-card__price-current">₹{{ product.price }}</span>
+      @if (product.originalPrice) {
+        <span class="product-card__price-original">₹{{ product.originalPrice }}</span>
+      }
+    </div>
+  </div>
+</article>

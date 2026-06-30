@@ -1,0 +1,22 @@
+<section class="best-sellers section" id="best-sellers">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Our Products</span>
+      <h2>Best Selling Products</h2>
+      <p>Explore our most loved herbal products, carefully formulated for maximum health benefits.</p>
+    </div>
+
+    <div class="best-sellers__grid">
+      @for (product of products; track product.id) {
+        <app-product-card [product]="product"></app-product-card>
+      }
+    </div>
+
+    <div class="best-sellers__cta">
+      <a routerLink="/products" class="btn btn-outline" id="best-sellers-view-all">
+        <i class="fas fa-th-large"></i>
+        View All Products
+      </a>
+    </div>
+  </div>
+</section>

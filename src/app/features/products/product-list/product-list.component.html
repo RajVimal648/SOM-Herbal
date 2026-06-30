@@ -1,0 +1,51 @@
+<section class="products-page section">
+  <div class="container">
+    <!-- Filters Bar -->
+    <div class="products-page__toolbar">
+      <!-- Category Filter -->
+      <div class="category-filters">
+        @for (cat of categories; track cat) {
+          <button class="category-btn"
+                  [class.category-btn--active]="selectedCategory() === cat"
+                  (click)="filterByCategory(cat)"
+                  [id]="'cat-' + cat.toLowerCase().replace(' ', '-')">
+            {{ cat }}
+          </button>
+        }
+      </div>
+
+      <!-- Sort -->
+      <div class="sort-control">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" (change)="onSortChange($any($event.target).value)">
+          <option value="default">Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Best Rated</option>
+          <option value="name">Name A–Z</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Results count -->
+    <p class="products-page__count">
+      Showing <strong>{{ filteredProducts().length }}</strong> products
+      @if (selectedCategory() !== 'All') {
+        in <em>{{ selectedCategory() }}</em>
+      }
+    </p>
+
+    <!-- Grid -->
+    <div class="products-page__grid">
+      @for (product of filteredProducts(); track product.id) {
+        <app-product-card [product]="product"></app-product-card>
+      }
+      @if (filteredProducts().length === 0) {
+        <div class="no-results">
+          <i class="fas fa-search"></i>
+          <p>No products found in this category.</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
